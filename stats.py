@@ -2,11 +2,6 @@
 from typing import TypedDict
 
 
-class CharCount(TypedDict):
-    char: str
-    num: int
-
-
 def get_num_words(text: str) -> int:
     return len(text.split())
 
@@ -21,8 +16,13 @@ def get_char_counts(text: str) -> dict[str, int]:
     return char_counts
 
 
-def get_char_count_dicts(counts_dict: dict[str, int]) -> list[CharCount]:
-    char_count_dicts: list[CharCount] = [
+class CharCountDict(TypedDict):
+    char: str
+    num: int
+
+
+def get_char_count_dicts(counts_dict: dict[str, int]) -> list[CharCountDict]:
+    char_count_dicts: list[CharCountDict] = [
         {"char": char, "num": num} for char, num in counts_dict.items()
     ]
     char_count_dicts.sort(key=lambda x: x["num"], reverse=True)
